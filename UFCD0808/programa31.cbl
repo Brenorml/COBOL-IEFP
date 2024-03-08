@@ -1,0 +1,97 @@
+      ******************************************************************
+      *> Author: Breno Lucena
+      *> Date: 01/09/2023
+      *> Purpose: Exercicio Ficha 31 - UFCD0807
+      *> Tectonics: cobc
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. programa31.
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT VENDOR-FILE
+           ASSIGN TO "vendor.dat"
+           ORGANIZATION IS INDEXED
+           RECORD KEY IS VENDOR-NUMBER
+           ACCESS MODE IS DYNAMIC.
+       DATA DIVISION.
+       FILE SECTION.
+       FD VENDOR-FILE.
+       01  VENDOR-RECORD.
+           05  VENDOR-NUMBER       PIC 9(5).
+           05  FILLER              PIC X VALUE SPACE.
+           05  VENDOR-NAME         PIC X(30).
+           05  VENDOR-ADDRESS-1    PIC X(30).
+           05  VENDOR-ADDRESS-2    PIC X(30).
+           05  VENDOR-CITY         PIC X(20).
+           05  VENDOR-STATE        PIC X(2).
+           05  VENDOR-ZIP          PIC X(10).
+           05  VENDOR-CONTACT      PIC X(30).
+           05  VENDOR-PHONE        PIC X(15).
+       WORKING-STORAGE SECTION.
+
+       PROCEDURE DIVISION.
+
+       PROGRAM-BEGIN.
+           PERFORM OPENING-PROCEDURE.
+           PERFORM MAIN-PROCESS.
+           PERFORM CLOSING-PROCEDURE.
+
+       PROGRAM-DONE.
+           STOP RUN.
+
+       OPENING-PROCEDURE.
+           OPEN I-O VENDOR-FILE.
+
+       CLOSING-PROCEDURE.
+           CLOSE VENDOR-FILE.
+
+       MAIN-PROCESS.
+           PERFORM INIT-VENDOR-RECORD.
+           PERFORM ENTER-VENDOR-FIELDS.
+           WRITE VENDOR-RECORD.
+
+       INIT-VENDOR-RECORD.
+           MOVE SPACE TO VENDOR-RECORD.
+           MOVE ZEROES TO VENDOR-NUMBER.
+
+       ENTER-VENDOR-FIELDS.
+           PERFORM ENTER-VENDOR-NUMBER.
+           PERFORM ENTER-VENDOR-NAME.
+           PERFORM ENTER-VENDOR-ADDRESS-1.
+           PERFORM ENTER-VENDOR-ADDRESS-2.
+           PERFORM ENTER-VENDOR-CITY.
+           PERFORM ENTER-VENDOR-STATE.
+           PERFORM ENTER-VENDOR-ZIP.
+           PERFORM ENTER-VENDOR-CONTACT.
+           PERFORM ENTER-VENDOR-PHONE.
+
+       ENTER-VENDOR-NUMBER.
+           DISPLAY "INSIRA O NUMERO DO FORNECEDOR(00001-99999)".
+           ACCEPT VENDOR-NUMBER.
+
+       ENTER-VENDOR-NAME.
+           DISPLAY "INSIRA O NOME DO FORNECEDOR".
+           ACCEPT VENDOR-NAME.
+
+       ENTER-VENDOR-ADDRESS-1.
+           DISPLAY "INSIRA O ENDERECO 1 DO FORNECEDOR".
+           ACCEPT VENDOR-ADDRESS-1.
+       ENTER-VENDOR-ADDRESS-2.
+           DISPLAY "INSIRA O ENDERECO 2 DO FORNECEDOR".
+           ACCEPT VENDOR-ADDRESS-2.
+       ENTER-VENDOR-CITY.
+           DISPLAY "INSIRA A CIDADE DO FORNECEDOR".
+           ACCEPT VENDOR-CITY.
+       ENTER-VENDOR-STATE.
+           DISPLAY "INSIRA O DISTRITO DO FORNECEDOR".
+           ACCEPT VENDOR-STATE.
+       ENTER-VENDOR-ZIP.
+           DISPLAY "INSIRA O CODIGO POSTAL DO FORNECEDOR".
+           ACCEPT VENDOR-ZIP.
+       ENTER-VENDOR-CONTACT.
+           DISPLAY "INSIRA O CONTACTO DO FORNECEDOR".
+           ACCEPT VENDOR-CONTACT.
+       ENTER-VENDOR-PHONE.
+           DISPLAY "INSIRA O TELEFONE DO FORNECEDOR".
+           ACCEPT VENDOR-PHONE.
